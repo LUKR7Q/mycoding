@@ -1,0 +1,124 @@
+import RPi.GPIO as GPIO
+import time
+
+GPIO 핀 번호 설정
+servo_pin_4 = 4
+servo_pin_27 = 27
+servo_pin_23 = 23
+servo_pin_17 = 17
+servo_pin_22 = 22
+
+GPIO 핀 모드 설정
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(servo_pin_4, GPIO.OUT)
+GPIO.setup(servo_pin_27, GPIO.OUT)
+GPIO.setup(servo_pin_23, GPIO.OUT)
+GPIO.setup(servo_pin_17, GPIO.OUT)
+GPIO.setup(servo_pin_22, GPIO.OUT)
+
+PWM 초기화
+pwm_4 = GPIO.PWM(servo_pin_4, 50)  # PWM 주파수 설정 (50 Hz)
+pwm_27 = GPIO.PWM(servo_pin_27, 50)
+pwm_23 = GPIO.PWM(servo_pin_23, 50)
+pwm_17 = GPIO.PWM(servo_pin_17, 50)
+pwm_22 = GPIO.PWM(servo_pin_22, 50)
+
+서보 모터를 초기 위치로 이동
+pwm_4.start(0)  # PWM 신호 시작 (Duty Cycle 0%)
+pwm_27.start(0)
+pwm_23.start(0)
+pwm_17.start(0)
+pwm_22.start(0)
+try:
+    while True:
+
+gpio22을 2.5로 고정
+        pwm_22.ChangeDutyCycle(2.5)
+        time.sleep(1)
+
+gpio17을 4.5로 고정
+        pwm_17.ChangeDutyCycle(4.5)
+        time.sleep(1)
+
+gpio23을 2.5로 고정
+        pwm_23.ChangeDutyCycle(2.5)
+        time.sleep(1)
+
+gpio27을 3.5로 고정
+        pwm_27.ChangeDutyCycle(10.5)
+        time.sleep(1)
+
+gpio4를 7.5로 고정
+        pwm_4.ChangeDutyCycle(4.5)
+        time.sleep(1)
+
+gpio27을 5.5로 고정
+        pwm_27.ChangeDutyCycle(12.0)
+        time.sleep(1)
+
+gpio23을 12.5로 고정
+        pwm_23.ChangeDutyCycle(12.5)
+        time.sleep(1)
+
+gpio17을 5.5로 고정
+        pwm_27.ChangeDutyCycle(9.5)
+        time.sleep(1)
+
+gpio4를 4.5로 고정
+        pwm_4.ChangeDutyCycle(10.0)
+        time.sleep(1)
+
+gpio27을 3.5로 고정
+        pwm_27.ChangeDutyCycle(12.0)
+        time.sleep(1)
+
+gpio23을 2.5로 고정
+        pwm_23.ChangeDutyCycle(2.5)
+        time.sleep(1)
+
+
+except KeyboardInterrupt:
+    pass
+
+PWM 정지 및 GPIO 해제
+pwm_4.stop()
+pwm_17.stop()
+pwm_23.stop()
+pwm_22.stop()
+pwm_27.stop()
+GPIO.cleanup()
+로봇팔
+---------------------------------------------------------------------------------------------------
+
+import RPi.GPIO as GPIO
+import time
+
+
+GPIO pin setup
+GPIO.setmode(GPIO.BCM)
+relay_pin = 17  # BCM 17
+GPIO.setup(relay_pin, GPIO.OUT)
+
+try:
+    while True:
+        user_input = input("Enter 'on' to turn the motor on or 'off' to turn it off: ").strip().lower()
+
+        if user_input == 'on':
+            # Turn the motor on
+            GPIO.output(relay_pin, GPIO.LOW)
+            print("Motor is ON")
+
+
+        elif user_input == 'off':
+            # Turn the motor off
+            GPIO.output(relay_pin, GPIO.HIGH)
+            print("Motor is OFF")
+
+        else:
+            print("Invalid input. Enter 'on' or 'off'.")
+
+except KeyboardInterrupt:
+    # Ctrl+C was pressed, clean up GPIO
+    GPIO.cleanup()
+컨테이너 벨트
+
